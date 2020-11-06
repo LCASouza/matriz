@@ -23,28 +23,6 @@ int main()
         }
     }
 
-    if (A.triangularS())
-    {
-        printf("\nA matriz A e triangular superior!\n");
-    }
-    else
-    {
-        printf("\nA matriz A nao e triangular superior!\n");
-    }
-
-    Matriz Transposta(A.getC(), A.getL());
-    Transposta.transposta(A);
-    printf("\nMatriz Transposta de A:\n");
-
-    for (int i=0; i<Transposta.getL(); i++)
-    {
-        for (int j = 0; j < Transposta.getC(); j++)
-        {
-            printf("%d ", Transposta.getValor(i, j));
-        }
-        printf("\n");
-    }
-
     printf("\nDigite as dimensoes da Matriz B: ");
     scanf("%d %d", &l, &c);
 
@@ -63,11 +41,33 @@ int main()
 
     if (A.triangularS())
     {
+        printf("\nA matriz A e triangular superior!\n");
+    }
+    else
+    {
+        printf("\nA matriz A nao e triangular superior!\n");
+    }
+
+    if (B.triangularS())
+    {
         printf("\nA matriz B e triangular superior!\n");
     }
     else
     {
         printf("\nA matriz B nao e triangular superior!\n");
+    }
+
+    Matriz Transposta(A.getC(), A.getL());
+    Transposta.transposta(A);
+    printf("\nMatriz Transposta de A:\n");
+
+    for (int i = 0; i < Transposta.getL(); i++)
+    {
+        for (int j = 0; j < Transposta.getC(); j++)
+        {
+            printf("%d ", Transposta.getValor(i, j));
+        }
+        printf("\n");
     }
 
     Matriz TranspostaB(B.getC(), B.getL());
@@ -87,7 +87,7 @@ int main()
 
     if (result.soma(A, B))
     {
-        printf("\nMatriz Somada:\n");
+        printf("\nResultado da soma da Matriz A e B:\n");
         for (int i = 0; i < result.getL(); i++)
         {
             for (int j = 0; j < result.getC(); j++)
@@ -104,7 +104,7 @@ int main()
 
     if (result.subtracao(A, B))
     {
-        printf("\nMatriz Subtraida:\n");
+        printf("\nResultado da subtracao da Matriz A e B:\n");
 
         for (int i = 0; i < result.getL(); i++)
         {
@@ -122,7 +122,7 @@ int main()
 
     if (result.multiplicacao(A, B))
     {
-        printf("\nMatriz Multiplicada:\n");
+        printf("\nResultado da Multiplicacao da Matriz A e B:\n");
 
         for (int i = 0; i < result.getL(); i++)
         {

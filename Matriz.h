@@ -29,4 +29,3 @@ class Matriz
 		bool aSimetrica();
 		bool identidade();
 };
-
