@@ -44,7 +44,7 @@ int Matriz::getC()
 	return C;
 }
 
-bool Matriz::soma(Matriz x, Matriz y)
+bool Matriz::soma(Matriz &x, Matriz &y)
 {
 	if (x.L != y.L || x.C != y.C)
 	{
@@ -53,7 +53,7 @@ bool Matriz::soma(Matriz x, Matriz y)
 
 	for (int i = 0; i < L; i++)
 	{
-		for (int j=0; j<C; j++)
+		for (int j = 0; j < C; j++)
 		{
 			this->M[i][j] = x.M[i][j] + y.M[i][j];
 		}
@@ -61,7 +61,7 @@ bool Matriz::soma(Matriz x, Matriz y)
 	return true;
 }
 
-bool Matriz::subtracao(Matriz x, Matriz y)
+bool Matriz::subtracao(Matriz &x, Matriz &y)
 {
 	if (x.L != y.L || x.C != y.C)
 	{
@@ -78,14 +78,36 @@ bool Matriz::subtracao(Matriz x, Matriz y)
 	return true;
 }
 
-bool Matriz::multiplicacao(Matriz x, Matriz y)
+bool Matriz::multiplicacao(Matriz &x, Matriz &y)
 {
-	if (y.C != x.L)
+	if (y.C != x.L || this-> L < x.L || this-> C < y.C)
 	{
 		return false;
 	}
 
-	
+	for (int i=0; i<x.L; i++)
+	{
+		for (int j=0; j<y.C; j++)
+		{
+			this->M[i][j] = 0;
+
+			for (int k=0; k<y.L; k++)
+			{
+				this->M[i][j] += x.M[i][k] * y.M[k][j];
+			}
+		}
+	}
+}
+
+void Matriz::transposta(Matriz &x)
+{
+	for (int i=0; i<L; i++)
+	{
+		for (int j=0; j<C; j++)
+		{
+			this->M[i][j] = x.M[j][i];
+		}
+	}
 }
 
 bool Matriz::triangularS()
@@ -100,6 +122,11 @@ bool Matriz::triangularI()
 
 bool Matriz::simetrica()
 {
+	if (L != C)
+	{
+		return false;
+	}
+
 	return true;
 }
 

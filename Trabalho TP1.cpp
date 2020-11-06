@@ -7,7 +7,7 @@ int main()
 {
     int l, c, x;
 
-    printf("Digite as dimensões da Matriz A: ");
+    printf("Digite as dimensoes da Matriz A: ");
     scanf("%d %d", &l, &c);
 
     Matriz A(l, c);
@@ -23,16 +23,29 @@ int main()
         }
     }
 
-    for (int i=0; i<l; i++)
+    if (A.triangularS())
     {
-        for (int j=0; j<c; j++)
+        printf("\nA matriz A e triangular superior!\n");
+    }
+    else
+    {
+        printf("\nA matriz A nao e triangular superior!\n");
+    }
+
+    Matriz Transposta(A.getC(), A.getL());
+    Transposta.transposta(A);
+    printf("\nMatriz Transposta de A:\n");
+
+    for (int i=0; i<Transposta.getL(); i++)
+    {
+        for (int j = 0; j < Transposta.getC(); j++)
         {
-            printf("%d ", A.getValor(i, j));
+            printf("%d ", Transposta.getValor(i, j));
         }
         printf("\n");
     }
 
-    printf("Digite as dimensões da Matriz B: ");
+    printf("\nDigite as dimensoes da Matriz B: ");
     scanf("%d %d", &l, &c);
 
     Matriz B(l, c);
@@ -48,41 +61,80 @@ int main()
         }
     }
 
-    for (int i = 0; i < l; i++)
+    if (A.triangularS())
     {
-        for (int j = 0; j < c; j++)
+        printf("\nA matriz B e triangular superior!\n");
+    }
+    else
+    {
+        printf("\nA matriz B nao e triangular superior!\n");
+    }
+
+    Matriz TranspostaB(B.getC(), B.getL());
+    TranspostaB.transposta(B);
+    printf("\nMatriz Transposta de B:\n");
+
+    for (int i = 0; i < TranspostaB.getL(); i++)
+    {
+        for (int j = 0; j < TranspostaB.getC(); j++)
         {
-            printf("%d ", B.getValor(i, j));
+            printf("%d ", TranspostaB.getValor(i, j));
         }
         printf("\n");
     }
 
-    Matriz somado(B.getL(), B.getC());
+    Matriz result(B.getL(), B.getC());
 
-    if (somado.soma(A, B))
+    if (result.soma(A, B))
     {
-        for (int i = 0; i < somado.getL(); i++)
+        printf("\nMatriz Somada:\n");
+        for (int i = 0; i < result.getL(); i++)
         {
-            for (int j = 0; j < somado.getC(); j++)
+            for (int j = 0; j < result.getC(); j++)
             {
-                printf("%d ", somado.getValor(i, j));
+                printf("%d ", result.getValor(i, j));
             }
             printf("\n");
         }
     }
-
-    /*Matriz multiplicado(A.getC(), B.getL());
-
-    if (multiplicado.multiplicacao(A, B))
+    else
     {
-        for (int i = 0; i < multiplicado.getL(); i++)
+        printf("\nNao e possivel somar essas matrizes!\n");
+    }
+
+    if (result.subtracao(A, B))
+    {
+        printf("\nMatriz Subtraida:\n");
+
+        for (int i = 0; i < result.getL(); i++)
         {
-            for (int j = 0; j < multiplicado.getC(); j++)
+            for (int j = 0; j < result.getC(); j++)
             {
-                printf("%d ", multiplicado.getValor(i, j));
+                printf("%d ", result.getValor(i, j));
             }
             printf("\n");
         }
     }
-    */
+    else
+    {
+        printf("\nNao e possivel subtrair essas matrizes!\n");
+    }
+
+    if (result.multiplicacao(A, B))
+    {
+        printf("\nMatriz Multiplicada:\n");
+
+        for (int i = 0; i < result.getL(); i++)
+        {
+            for (int j = 0; j < result.getC(); j++)
+            {
+                printf("%d ", result.getValor(i, j));
+            }
+            printf("\n");
+        }
+    }
+    else
+    {
+        printf("\nNao e possivel multiplicar essas matrizes!\n");
+    }
 }

@@ -19,9 +19,10 @@ class Matriz
 		int getL();
 		int getC();
 
-		bool soma(Matriz x, Matriz y);
-		bool subtracao(Matriz x, Matriz y);
-		bool multiplicacao(Matriz x, Matriz y);
+		void transposta(Matriz &x);
+		bool soma(Matriz &x, Matriz &y);
+		bool subtracao(Matriz &x, Matriz &y);
+		bool multiplicacao(Matriz &x, Matriz &y);
 		bool triangularS();
 		bool triangularI();
 		bool simetrica();
