@@ -44,6 +44,29 @@ int Matriz::getC()
 	return C;
 }
 
+bool Matriz::diffEqual(Matriz &x)
+{
+	int aux = 0;
+	if (this->L == x.getL() && this->C == x.getC())
+	{
+		for (int i = 0; i < this->L; i++)
+		{
+			for (int j = 0; j < this->C; j++)
+			{
+				if (this->M[i][j] == x.getValor(i, j))
+				{
+					aux++;
+				}
+			}
+		}
+		if (aux == this->L * this->C)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
 bool Matriz::soma(Matriz &x, Matriz &y)
 {
 	if (x.L != y.L || x.C != y.C)
@@ -110,6 +133,17 @@ void Matriz::transposta(Matriz &x)
 	}
 }
 
+void Matriz::oposta(Matriz& x)
+{
+	for (int i = 0; i < L; i++)
+	{
+		for (int j = 0; j < C; j++)
+		{
+			this->M[i][j] = x.M[i][j] * -1;
+		}
+	}
+}
+
 bool Matriz::triangularS()
 {
 	return true;
@@ -120,19 +154,56 @@ bool Matriz::triangularI()
 	return true;
 }
 
-bool Matriz::simetrica()
+bool Matriz::simetrica(Matriz &x)
 {
-	if (L != C)
+	if (L != C || this->L != x.L || this->C != x.C)
 	{
 		return false;
 	}
 
-	return true;
+	int aux = 0;
+	
+	for (int i=0; i<this->L; i++)
+	{
+		for (int j=0; j<this->C; j++)
+		{
+			if (this->M[i][j] == x.getValor(i, j))
+			{
+				aux++;
+			}
+		}
+	}
+	if (aux == this->L * this->C)
+	{
+		return true;
+	}
+	return false;
 }
 
-bool Matriz::aSimetrica()
+bool Matriz::aSimetrica(Matriz &x)
 {
-	return true;
+	if (L != C || this->L != x.L || this->C != x.C)
+	{
+		return false;
+	}
+
+	int aux = 0;
+
+	for (int i=0; i<this->L; i++)
+	{
+		for (int j=0; j<this->C; j++)
+		{
+			if (this->M[i][j] == x.getValor(i, j))
+			{
+				aux++;
+			}
+		}
+	}
+	if (aux == this->L * this->C)
+	{
+		return true;
+	}
+	return false;
 }
 
 bool Matriz::identidade()

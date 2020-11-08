@@ -19,13 +19,15 @@ class Matriz
 		int getL();
 		int getC();
 
-		void transposta(Matriz &x);
+		bool diffEqual(Matriz &x);
 		bool soma(Matriz &x, Matriz &y);
 		bool subtracao(Matriz &x, Matriz &y);
 		bool multiplicacao(Matriz &x, Matriz &y);
+		void transposta(Matriz &x);
+		void oposta(Matriz &x);
 		bool triangularS();
 		bool triangularI();
-		bool simetrica();
-		bool aSimetrica();
+		bool simetrica(Matriz &x);
+		bool aSimetrica(Matriz &x);
 		bool identidade();
 };
