@@ -179,6 +179,15 @@ int main()
         printf("\n  A Matriz A nao e Antissimetrica!\n");
     }
 
+    if (A.identidade())
+    {
+        printf("\n  A Matriz A e Identidade!\n");
+    }
+    else
+    {
+        printf("\n  A Matriz A nao e Identidade!\n");
+    }
+
     if (A.triangularS())
     {
         printf("\n  A Matriz A e Triangular Superior!\n");
@@ -208,6 +217,15 @@ int main()
     else
     {
         printf("\n  A Matriz B nao e Antissimetrica!\n");
+    }
+
+    if (B.identidade())
+    {
+        printf("\n  A Matriz B e Identidade!\n");
+    }
+    else
+    {
+        printf("\n  A Matriz B nao e Identidade!\n");
     }
 
     if (B.triangularS())

@@ -146,7 +146,28 @@ void Matriz::oposta(Matriz& x)
 
 bool Matriz::triangularS()
 {
-	return true;
+	if (L != C)
+	{
+		return false;
+	}
+	
+	int aux = 0;
+
+	for (int i=0; i<L; i++)
+	{
+		for (int j=i+1; j<C; j++)
+		{
+			if (M[i][j]==0)
+			{
+				aux++;
+			}
+		}
+	}
+	if (aux==(L*C - L)/2)
+	{
+		return true;
+	}
+	return false;
 }
 
 bool Matriz::triangularI()
@@ -208,5 +229,29 @@ bool Matriz::aSimetrica(Matriz &x)
 
 bool Matriz::identidade()
 {
-	return true;
+	int aux = 0;
+	if (L != C)
+	{
+		return false;
+	}
+
+	for (int i=0; i<L; i++)
+	{
+		for (int j=0; j<C; j++)
+		{
+			if (i == j && M[i][j] == 1)
+			{
+				aux++;
+			}
+			else if (i != j && M[i][j] == 0)
+			{
+				aux++;
+			}
+		}
+	}
+	if (aux == L * C)
+	{
+		return true;
+	}
+	return false;
 }
