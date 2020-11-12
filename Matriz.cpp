@@ -1,5 +1,6 @@
 #include "Matriz.h"
 #include <iostream>
+#include <fstream>
 
 using namespace std;
 
@@ -42,6 +43,32 @@ int Matriz::getL()
 int Matriz::getC()
 {
 	return C;
+}
+
+void Matriz::setMatriz()
+{
+	int x;
+	for (int i = 0; i < this->L; i++)
+	{
+		for (int j = 0; j < this->C; j++)
+		{
+			scanf("%d", &x);
+
+			this->M[i][j] = x;
+		}
+	}
+}
+
+void Matriz::getMatriz()
+{
+	for (int i = 0; i < L; i++)
+	{
+		for (int j = 0; j < C; j++)
+		{
+			printf("%d ", M[i][j]);
+		}
+		printf("\n");
+	}
 }
 
 bool Matriz::diffEqual(Matriz &x)
@@ -120,6 +147,45 @@ bool Matriz::multiplicacao(Matriz &x, Matriz &y)
 			}
 		}
 	}
+	return true;
+}
+
+void Matriz::multiplicacaoK(int n)
+{
+	for (int i = 0; i < L; i++)
+	{
+		for (int j = 0; j < C; j++)
+		{
+			M[i][j] *= n;
+		}
+	}
+}
+
+bool Matriz::potencia(Matriz &x, int n)
+{
+	if (this->L != this-> C)
+	{
+		return false;
+	}
+
+	Matriz ANS(this->L, this->C);
+
+	for (int a=0; a<n-1; a++)
+	{
+		for (int i = 0; i < this->L; i++)
+		{
+			for (int j = 0; j < this->C; j++)
+			{
+				ANS.M[i][j] = 0;
+				for (int k = 0; k < x.L; k++)
+				{
+					ANS.M[i][j] += this->M[i][k] * x.M[k][j];
+				}
+			}
+		}
+		igual(ANS);
+	}
+	return true;
 }
 
 void Matriz::transposta(Matriz &x)
@@ -133,7 +199,7 @@ void Matriz::transposta(Matriz &x)
 	}
 }
 
-void Matriz::oposta(Matriz& x)
+void Matriz::oposta(Matriz &x)
 {
 	for (int i = 0; i < L; i++)
 	{
@@ -157,21 +223,34 @@ bool Matriz::triangularS()
 	{
 		for (int j=i+1; j<C; j++)
 		{
-			if (M[i][j]==0)
+			if (M[i][j]!=0)
 			{
-				aux++;
+				return false;
 			}
 		}
 	}
-	if (aux==(L*C - L)/2)
-	{
-		return true;
-	}
-	return false;
+	return true;
 }
 
 bool Matriz::triangularI()
 {
+	if (L != C)
+	{
+		return false;
+	}
+
+	int aux = 0;
+
+	for (int i = 0; i < L; i++)
+	{
+		for (int j = 0; j < i; j++)
+		{
+			if (M[i][j] != 0)
+			{
+				return false;
+			}
+		}
+	}
 	return true;
 }
 
@@ -230,6 +309,7 @@ bool Matriz::aSimetrica(Matriz &x)
 bool Matriz::identidade()
 {
 	int aux = 0;
+
 	if (L != C)
 	{
 		return false;
@@ -254,4 +334,15 @@ bool Matriz::identidade()
 		return true;
 	}
 	return false;
+}
+
+void Matriz::igual(Matriz &x)
+{
+	for (int i=0; i<x.L; i++)
+	{
+		for (int j=0; j<x.C; j++)
+		{
+			this->M[i][j] = x.M[i][j];
+		}
+	}
 }

@@ -15,14 +15,17 @@ class Matriz
 
 		void setValor(int x, int l, int c);
 		int getValor(int l, int c);
-
 		int getL();
 		int getC();
+		void setMatriz();
+		void getMatriz();
 
 		bool diffEqual(Matriz &x);
 		bool soma(Matriz &x, Matriz &y);
 		bool subtracao(Matriz &x, Matriz &y);
 		bool multiplicacao(Matriz &x, Matriz &y);
+		void multiplicacaoK(int n);
+		bool potencia(Matriz &x, int n);
 		void transposta(Matriz &x);
 		void oposta(Matriz &x);
 		bool triangularS();
@@ -30,4 +33,5 @@ class Matriz
 		bool simetrica(Matriz &x);
 		bool aSimetrica(Matriz &x);
 		bool identidade();
+		void igual(Matriz &x);
 };
