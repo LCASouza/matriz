@@ -13,8 +13,8 @@ class Matriz
 		Matriz(int l, int c);
 		~Matriz();
 
-		void setValor(int x, int l, int c);
-		int getValor(int l, int c);
+		void setValor(int x, int i, int j);
+		int getValor(int i, int j);
 		int getL();
 		int getC();
 		void setMatriz();

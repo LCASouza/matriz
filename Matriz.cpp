@@ -25,14 +25,14 @@ Matriz::~Matriz()
 	delete[] M;
 }
 
-void Matriz::setValor(int x, int l, int c)
+void Matriz::setValor(int x, int i, int j)
 {
-	M[l][c] = x;
+	M[i][j] = x;
 }
 
-int Matriz::getValor(int l, int c)
+int Matriz::getValor(int i, int j)
 {
-	return M[l][c];
+	return M[i][j];
 }
 
 int Matriz::getL()

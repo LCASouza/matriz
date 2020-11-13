@@ -7,6 +7,7 @@ using namespace std;
 int main()
 {
     //Geracao de arquivos, no final do script.
+    Arquivo archiveIn;
 
     int l, c, x; //Linhas da matriz, colunas e valores que serao inseridos.
     bool somaSub=false, mult=false, potA=false, potB=false; //Verificar se e possivel somar, subtrair, multplicar ou potenciar.
@@ -18,6 +19,18 @@ int main()
 
     printf("Insira os elementos da matriz A:\n");
     A.setMatriz();
+
+    //Arquivo
+    //A Matriz que sera lida de um arquivo, será igual a A * 2!
+
+    Matriz matrizArquivo(A.getL(), A.getC());
+    matrizArquivo.igual(A);
+    matrizArquivo.multiplicacaoK(2);
+
+    archiveIn.gravarMatrizParaLeitura(matrizArquivo);
+    archiveIn.pegarMatriz(matrizArquivo);
+
+    //Arquivo
 
     printf("\nDigite as dimensoes da Matriz B: ");
     scanf("%d %d", &l, &c);
@@ -249,7 +262,11 @@ int main()
 
     Arquivo archive;
 
-    archive.gravarFrase("Matriz A:\n");
+    archive.gravarFrase("Matriz Recuperada do Arquivo lerMatrizes.txt, que foi deletado:\n");
+    archive.gravarMatriz(matrizArquivo);
+    archive.gravarFrase("Essa matriz eh a copia da matriz A * 2!\n");
+
+    archive.gravarFrase("\nMatriz A:\n");
     archive.gravarMatriz(A);
 
     archive.gravarFrase("\nMatriz B:\n");

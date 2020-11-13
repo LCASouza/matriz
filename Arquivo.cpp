@@ -13,6 +13,18 @@ Arquivo::Arquivo()
 	{
 		printf("\nNao foi possivel acessar o arquivo!\n");
 	}
+
+	fileIn.open("lerMatrizes.txt", ios::app);
+
+	if (!file)
+	{
+		printf("\nNao foi possivel acessar o arquivo!\n");
+	}
+}
+Arquivo::~Arquivo()
+{
+	file.close();
+	fileIn.close();
 }
 
 void Arquivo::gravarFrase(string texto)
@@ -29,5 +41,31 @@ void Arquivo::gravarMatriz(Matriz &x)
 			file << x.getValor(i, j) << " ";
 		}
 		file << endl;
+	}
+}
+
+void Arquivo::gravarMatrizParaLeitura(Matriz &x)
+{
+	for (int i = 0; i < x.getL(); i++)
+	{
+		for (int j = 0; j < x.getC(); j++)
+		{
+			fileIn << x.getValor(i, j) << " ";
+		}
+		fileIn << endl;
+	}
+}
+
+void Arquivo::pegarMatriz(Matriz &x)
+{
+	int n;
+
+	for (int i = 0; i < x.getL(); i++)
+	{
+		for (int j = 0; j < x.getC(); j++)
+		{
+			n = x.getValor(i, j);
+			fileIn >> n;
+		}
 	}
 }
