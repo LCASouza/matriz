@@ -25,6 +25,7 @@ Arquivo::~Arquivo()
 {
 	file.close();
 	fileIn.close();
+	remove("lerMatrizes.txt"); //removendo o arquivo que será lido.
 }
 
 void Arquivo::gravarFrase(string texto)
