@@ -1,2 +1,0 @@
-D:\Scripts\C++\TP1 Matriz\matriz\x64\Debug\Trabalho TP1.exe
-D:\Scripts\C++\TP1 Matriz\matriz\x64\Debug\Trabalho TP1.pdb

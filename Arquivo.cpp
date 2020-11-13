@@ -14,7 +14,7 @@ Arquivo::Arquivo()
 		printf("\nNao foi possivel acessar o arquivo!\n");
 	}
 
-	fileIn.open("lerMatrizes.txt", ios::app);
+	fileIn.open("lerMatrizes.txt", ios::in);
 
 	if (!file)
 	{
